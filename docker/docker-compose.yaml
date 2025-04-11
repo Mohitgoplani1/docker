@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    networks:
+      - internal
+    expose:
+      - "3000"  
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "8080:80"  
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+    networks:
+      - internal
+      - external
+
+networks:
+  internal:
+    internal: true  
+  external:
+    driver: bridge   

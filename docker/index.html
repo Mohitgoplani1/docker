@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frontend Outside Docker</title>
+</head>
+<body>
+  <h1>Accessing Internal Docker API via Nginx</h1>
+  <button onclick="fetchData()">Fetch API</button>
+  <pre id="output"></pre>
+
+  <script>
+    function fetchData() {
+      fetch('http://localhost:8080/api')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(err => {
+          console.error('Fetch error:', err);
+        });
+    }
+  </script>
+</body>
+</html>

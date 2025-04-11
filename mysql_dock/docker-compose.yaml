@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mysql1:
+    image: mysql:8.0
+    container_name: mysql1
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    networks:
+      - internal_net
+
+  mysql2:
+    image: mysql:8.0
+    container_name: mysql2
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    networks:
+      - internal_net
+    
+  mysql3:
+    image: mysql:8.0
+    container_name: mysql3
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+
+networks:
+  internal_net:
+    driver: bridge
+    internal: true 
